@@ -41,7 +41,7 @@ int main() {
 	fp = fopen("input.txt", "r");
 
 	if (fp == NULL) {
-		printf("ÆÄÀÏ ¸ø ÀĞÀ½.");
+		printf("íŒŒì¼ ëª» ì½ìŒ.");
 	}
 	else {
 		while (EOF != fscanf(fp, "%s %s %s %d", tmp.id, tmp.name, tmp.course, &tmp.score)) {
@@ -58,44 +58,44 @@ int main() {
 	char value[128];
 
 	while (menu != -1) {
-		printf("-- ¸Ş´º --\n");
-		printf("-1. Á¾·á\n");
-		printf("1. ÇĞ»ı »ğÀÔ\n");
-		printf("2. ÇĞ»ı »èÁ¦\n");
-		printf("3. Course °Ë»ö\n");
-		printf("4. Name °Ë»ö\n");
-		printf("5. id °Ë»ö\n");
-		printf("ÀÔ·Â : ");
+		printf("-- ë©”ë‰´ --\n");
+		printf("-1. ì¢…ë£Œ\n");
+		printf("1. í•™ìƒ ì‚½ì…\n");
+		printf("2. í•™ìƒ ì‚­ì œ\n");
+		printf("3. Course ê²€ìƒ‰\n");
+		printf("4. Name ê²€ìƒ‰\n");
+		printf("5. id ê²€ìƒ‰\n");
+		printf("ì…ë ¥ : ");
 		scanf("%d", &menu);
 
 
 		if (menu == 1) {
-			printf("»ğÀÔÇÒ ÇĞ»ı ÀÔ·Â (id name course score: ");
+			printf("ì‚½ì…í•  í•™ìƒ ì…ë ¥ (id name course score: ");
 			scanf("%s %s %s %d", tmp.id, tmp.name, tmp.course, &tmp.score);
 			x = InsertNode(root, tmp);
 			if (x == 1) {
-				printf("¼º°øÀÔ´Ï´Ù.\n");
+				printf("ì„±ê³µì…ë‹ˆë‹¤.\n");
 			}
 		}
 
 		else if (menu == 2) {
-			printf("»èÁ¦ÇÒ ÇĞ»ı id ÀÔ·Â : ");
+			printf("ì‚­ì œí•  í•™ìƒ id ì…ë ¥ : ");
 			scanf("%s", value);
 			DeleteNode(root, value);
 		}
 
 		else if (menu == 3) {
-			printf("Course ÀÔ·Â : ");
+			printf("Course ì…ë ¥ : ");
 			scanf("%s", value);
 			SearchCourse(root, value);
 		}
 		else if (menu == 4) {
-			printf("Name ÀÔ·Â : ");
+			printf("Name ì…ë ¥ : ");
 			scanf("%s", value);
 			SearchName(root, value);
 		}
 		else if (menu == 5) {
-			printf("ID ÀÔ·Â : ");
+			printf("ID ì…ë ¥ : ");
 			scanf("%s", value);
 			SearchID(root, value);
 		}
@@ -108,12 +108,12 @@ int main() {
 }
 
 int InsertNode(TreeNode* root, STUDENT key) {
-	// a = ºÎ¸ğ ³ëµå, n = ÇöÀç ³ëµå
+	// a = ë¶€ëª¨ ë…¸ë“œ, n = í˜„ì¬ ë…¸ë“œ
 	TreeNode *a, *n;
 
 	a = NULL;
 
-	//Å½»öÇØ¼­ »ğÀÔ °¡´ÉÇÑÁö ¾Ë¾Æº¸±â
+	//íƒìƒ‰í•´ì„œ ì‚½ì… ê°€ëŠ¥í•œì§€ ì•Œì•„ë³´ê¸°
 	n = root;
 	while (1) {
 		if (strcmp(n->key.id, key.id) > 0) {
@@ -135,11 +135,11 @@ int InsertNode(TreeNode* root, STUDENT key) {
 			}
 		}
 		else {
-			printf("id Áßº¹ÀÔ´Ï´Ù.(»ğÀÔ ºÒ°¡´ÉÇÕ´Ï´Ù.)\n");
+			printf("id ì¤‘ë³µì…ë‹ˆë‹¤.(ì‚½ì… ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.)\n");
 			return 0;
 		}
 		if (strcmp(n->key.id, key.id) == 0) {
-			printf("id Áßº¹ÀÔ´Ï´Ù.(»ğÀÔ ºÒ°¡´ÉÇÕ´Ï´Ù.)\n");
+			printf("id ì¤‘ë³µì…ë‹ˆë‹¤.(ì‚½ì… ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.)\n");
 			return 0;
 		}
 	}
@@ -150,7 +150,7 @@ TreeNode* NewNode(STUDENT key) {
 	TreeNode *b = (TreeNode *)malloc(sizeof(TreeNode));
 	if (b == NULL) return 0;
 
-	//º¹»ç
+	//ë³µì‚¬
 	memcpy(&(b->key), &key, sizeof(STUDENT));
 	b->left = b->right = NULL;
 	return b;
@@ -178,11 +178,11 @@ int DeleteNode(TreeNode* root, char* id) {
 
 
 	if (n == NULL) {
-		printf("¾ø¾î¼­ »èÁ¦°¡ ºÒ°¡´ÉÇÕ´Ï´Ù.");
+		printf("ì—†ì–´ì„œ ì‚­ì œê°€ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		return 0;
 	}
 
-	//´ÜÀÏ³ëµå
+	//ë‹¨ì¼ë…¸ë“œ
 	if (n->left == NULL && n->right == NULL) {
 
 		if (a != NULL) {
@@ -199,7 +199,7 @@ int DeleteNode(TreeNode* root, char* id) {
 			root->right = NULL;
 		}
 	}
-	//ÀÚ½Ä ÇÏ³ª
+	//ìì‹ í•˜ë‚˜
 	else if ((n->left == NULL) || (n->right == NULL)) {
 
 		if (n->left != NULL) {
@@ -226,7 +226,7 @@ int DeleteNode(TreeNode* root, char* id) {
 			root->right = c->right;
 		}
 	}
-	//ÀÚ½Ä µÑ
+	//ìì‹ ë‘˜
 	else {
 		s_ = n;
 		s = n->right;
@@ -247,23 +247,23 @@ int DeleteNode(TreeNode* root, char* id) {
 		n->key = s->key;
 		n = s;
 	}
-	printf("¼º°øÀÔ´Ï´Ù.");
+	printf("ì„±ê³µì…ë‹ˆë‹¤.");
 	return 1;
 }
 
 
 void SearchCourse(TreeNode* node, char *course) {
-	printf("%s °ú¸ñÀ» Ã£½À´Ï´Ù.\n", course);
+	printf("%s ê³¼ëª©ì„ ì°¾ìŠµë‹ˆë‹¤.\n", course);
 	int cnt = 0;
 	int sum = 0;
 
 	SearchCourseRecursive(node, course, &cnt, &sum);
 	if (cnt == 0) {
-		printf("ÇØ´ç °ú¸ñÀ» µè´Â ÇĞ»ıÀÌ ¾ø½À´Ï´Ù.\n");
+		printf("í•´ë‹¹ ê³¼ëª©ì„ ë“£ëŠ” í•™ìƒì´ ì—†ìŠµë‹ˆë‹¤.\n");
 	}
 	else {
-		printf("¼ö°­ ÀÎ¿ø : %d¸í\n", cnt);
-		printf("Æò±Õ Á¡¼ö : %.2fÁ¡\n", (float)sum / cnt);
+		printf("ìˆ˜ê°• ì¸ì› : %dëª…\n", cnt);
+		printf("í‰ê·  ì ìˆ˜ : %.2fì \n", (float)sum / cnt);
 	}
 }
 
@@ -300,11 +300,11 @@ int SearchNameRecursive(TreeNode *node, char *name) {
 
 int SearchID(TreeNode* node, char *id) {
 	if (SearchIDRecursive(node, id)) {
-		printf("ÇĞ»ıÀ» Ã£¾Ò½À´Ï´Ù.\n");
+		printf("í•™ìƒì„ ì°¾ì•˜ìŠµë‹ˆë‹¤.\n");
 		return 1;
 	}
 	else {
-		printf("ÇĞ»ıÀ» Ã£Áö ¸øÇß½À´Ï´Ù.\n");
+		printf("í•™ìƒì„ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
 		return 0;
 	}
 }
