@@ -1,0 +1,14 @@
+7 Kim 70
+10 Lee 45
+5 Park 16
+2 Mike 87
+12 James 55
+11 John 22
+13 Chris 15
+15 Lona 8
+14 Yool 100
+4 Bill 29
+3 Sara 87
+6 Paul 98
+9 Jenny 98
+8 Devi 74
