@@ -8,7 +8,7 @@ int Swap(int* a, int* b)
 	int c = *a;	
 	*a = *b;	
 	*b = c;		
-}// ¹Ù²ãÁÖ±â
+}// ë°”ê¿”ì£¼ê¸°
 
 void Sort(int* arr, int size)
 {
@@ -28,7 +28,7 @@ void Sort(int* arr, int size)
 			}
 		}
 	}
-}//»ðÀÔÁ¤·Ä
+}//ì‚½ìž…ì •ë ¬
 
 
 int* ArSet(int size)
@@ -37,7 +37,7 @@ int* ArSet(int size)
 	for (int i = 0; i < size; ++i)
 		temp[i] = size - i;
 	return temp;
-}// °æ¿ìÀÇ ¼ö ¼³Á¤
+}// ê²½ìš°ì˜ ìˆ˜ ì„¤ì •
 
 
 int main()
@@ -45,27 +45,27 @@ int main()
 	FILE* fp = fopen("./lab1.data", "r");	
 	if (fp == NULL) 
 	{
-		printf("ÆÄÀÏ¾øÀ½.");
+		printf("íŒŒì¼ì—†ìŒ.");
 		return 0;
 	}
-	int n;		//file ¹ÞÀ»°Å
-	int id = 0;	//ÀÔ·ÂÀ¸·Î ¹ÞÀº ¼ýÀÚÀÇ °³¼ö count + ¹è¿­ÀÇ ³¡ ºÎºÐ check
-	int size = 10;	//¹è¿­ Å©±âÀúÀå
-	int* ar = (int*)malloc(sizeof(int) * size);	//ar¿¡ size Å©±â·Î ¹è¿­ ¼³Á¤
+	int n;		//file ë°›ì„ê±°
+	int id = 0;	//ìž…ë ¥ìœ¼ë¡œ ë°›ì€ ìˆ«ìžì˜ ê°œìˆ˜ count + ë°°ì—´ì˜ ë ë¶€ë¶„ check
+	int size = 10;	//ë°°ì—´ í¬ê¸°ì €ìž¥
+	int* ar = (int*)malloc(sizeof(int) * size);	//arì— size í¬ê¸°ë¡œ ë°°ì—´ ì„¤ì •
 	printf("Input: ");	
 	while (fscanf(fp, "%d", &n) != -1) 
 	{
 		printf("%d ", n);
 		if (id >= size) 
-		{	//¹è¿­ÀÇ ³¡ÀÌ sizeº¸´Ù Å©°Å³ª °°¾ÆÁ³´Ù¸é ¹è¿­À» ´Ã·ÁÁà¾ß ÇÔ
-			size *= 2;	//¹è¿­Å©±â2¹è·Î
-			int* temp = (int*)malloc(sizeof(int) * size);	//ÇØ´ç Å©±â »õ·Î¿î ¹è¿­
-			for (int i = 0; i < id; ++i)	//ÀÌÀü ¹è¿­ º¹»ç
+		{	//ë°°ì—´ì˜ ëì´ sizeë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì•„ì¡Œë‹¤ë©´ ë°°ì—´ì„ ëŠ˜ë ¤ì¤˜ì•¼ í•¨
+			size *= 2;	//ë°°ì—´í¬ê¸°2ë°°ë¡œ
+			int* temp = (int*)malloc(sizeof(int) * size);	//í•´ë‹¹ í¬ê¸° ìƒˆë¡œìš´ ë°°ì—´
+			for (int i = 0; i < id; ++i)	//ì´ì „ ë°°ì—´ ë³µì‚¬
 				temp[i] = ar[i];
-			free(ar);	//ÀÌÀü ¹è¿­ »èÁ¦
-			ar = temp;	//arrÀÌ »õ¹è¿­ÀÇ ½ÃÀÛ ºÎºÐÀ» °¡¸®Å°°Ô
+			free(ar);	//ì´ì „ ë°°ì—´ ì‚­ì œ
+			ar = temp;	//arrì´ ìƒˆë°°ì—´ì˜ ì‹œìž‘ ë¶€ë¶„ì„ ê°€ë¦¬í‚¤ê²Œ
 		}
-		ar[id++] = n;	//ÀÔ·Â°ª ÀúÀå
+		ar[id++] = n;	//ìž…ë ¥ê°’ ì €ìž¥
 	}
 	puts("");
 	Sort(ar, id);
@@ -76,18 +76,18 @@ int main()
 	free(ar);
 	printf("%4s %11s %-8s\n", "n", "repetitions", "time");
 	for (int i = 0; i <= 100; i += 10) 
-	{	//¹è¿­ÀÇ ±æÀÌ 0ºÎÅÍ 100±îÁö 10´ÜÀ§
+	{	//ë°°ì—´ì˜ ê¸¸ì´ 0ë¶€í„° 100ê¹Œì§€ 10ë‹¨ìœ„
 		printf("%4d %11d ", i, 1000 - (i * 5));
-		long sum = 0;	//½Ã°£ÀÇ ÇÕ
+		long sum = 0;	//ì‹œê°„ì˜ í•©
 		for (int j = 0; j < 1000 - (i * 5); ++j) 
 		{
-			ar = ArSet(i);		//Å©±âº° »õ·Î¿î ¹è¿­À» ÇÒ´ç
-			clock_t start = clock();	//½ÃÀÛ ½Ã°£ È®ÀÎ
+			ar = ArSet(i);		//í¬ê¸°ë³„ ìƒˆë¡œìš´ ë°°ì—´ì„ í• ë‹¹
+			clock_t start = clock();	//ì‹œìž‘ ì‹œê°„ í™•ì¸
 			Sort(ar, i);		
-			clock_t end = clock();		//³¡ ½Ã°£ È®ÀÎ
-			sum += (end - start);		//sum º¯¼ö¿¡ ³¡ ½Ã°£ - ½ÃÀÛ ½Ã°£++,
+			clock_t end = clock();		//ë ì‹œê°„ í™•ì¸
+			sum += (end - start);		//sum ë³€ìˆ˜ì— ë ì‹œê°„ - ì‹œìž‘ ì‹œê°„++,
 		}
-		printf("%-8lf\n", sum / (1000.0 - (i * 5)));	//Ãâ·Â
+		printf("%-8lf\n", sum / (1000.0 - (i * 5)));	//ì¶œë ¥
 	}
 	return 0;
 }
