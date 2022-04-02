@@ -10,7 +10,7 @@ struct MATRIX {
 
 void ToSparse(struct MATRIX** mat, int* idx, int* capacity, int r, int c, int dat) {
 	if (*idx >= *capacity) {	
-		(*capacity) *= 2;	// ºÎÁ·½Ã ÀúÀå °ø°£ 2¹èÈÄ º¹»ç, ¸Þ¸ð¸® ÇÒ´ç
+		(*capacity) *= 2;	// ë¶€ì¡±ì‹œ ì €ìž¥ ê³µê°„ 2ë°°í›„ ë³µì‚¬, ë©”ëª¨ë¦¬ í• ë‹¹
 		struct MATRIX* tmp = (struct MATRIX*)malloc(sizeof(struct MATRIX) * (*capacity));	
 		for (int k = 0; k < *idx; ++k)	
 			tmp[k] = (*mat)[k];
@@ -25,18 +25,18 @@ void ToSparse(struct MATRIX** mat, int* idx, int* capacity, int r, int c, int da
 struct MATRIX* LoadMatrix(const char* fileName, int * idx, int * capacity, int * n, int * m) {
 	FILE* fp = fopen(fileName, "r");	
 	if (fp == NULL) {	
-		printf("ÆÄÀÏ ¾øÀ½");
+		printf("íŒŒì¼ ì—†ìŒ");
 		return 0;
 	}
-	*idx = 0;	//idx¸¦ 0À¸·Î
+	*idx = 0;	//idxë¥¼ 0ìœ¼ë¡œ
 	*capacity = 20;	
-	struct MATRIX* res = (struct MATRIX*)malloc(sizeof(struct MATRIX) * (*capacity));	//Çà·ÄÀ» ÀúÀåÇÒ ¹è¿­
-	fscanf(fp, "%d %d", n, m);	// Çà·ÄÀÇ Å©±â
+	struct MATRIX* res = (struct MATRIX*)malloc(sizeof(struct MATRIX) * (*capacity));	//í–‰ë ¬ì„ ì €ìž¥í•  ë°°ì—´
+	fscanf(fp, "%d %d", n, m);	// í–‰ë ¬ì˜ í¬ê¸°
 	for (int i = 0; i < *n; ++i) {
 		for (int j = 0; j < *m; ++j) {
 			int num; fscanf(fp, "%d", &num);	
 			if (num != 0)	
-				ToSparse(&res, idx, capacity, i, j, num);	//Sparse matrix»ðÀÔ
+				ToSparse(&res, idx, capacity, i, j, num);	//Sparse matrixì‚½ìž…
 		}
 	}
 	return res;
@@ -80,10 +80,10 @@ struct MATRIX* Sum(struct MATRIX* A, struct MATRIX* B, int idx1, int idx2, int *
 }
 
 struct MATRIX* FastTranspose(struct MATRIX* A, int idx, int * n, int * m) {
-	struct MATRIX* res = (struct MATRIX*)malloc(sizeof(struct MATRIX) * idx);	//»õ·Î¿î °á°ú¸¦ ÀúÀåÇÒ ¹è¿­
+	struct MATRIX* res = (struct MATRIX*)malloc(sizeof(struct MATRIX) * idx);	//ìƒˆë¡œìš´ ê²°ê³¼ë¥¼ ì €ìž¥í•  ë°°ì—´
 	int cols = (*m) + 1;	
-	int* rowTerms = (int*)malloc(sizeof(int) * cols);	//»õ·Î¿î ¸Þ¸ð¸® ÇÒ´ç
-	int tmp = *n;	//n°ú mÀ» ±³Ã¼º¯¼ö
+	int* rowTerms = (int*)malloc(sizeof(int) * cols);	//ìƒˆë¡œìš´ ë©”ëª¨ë¦¬ í• ë‹¹
+	int tmp = *n;	//nê³¼ mì„ êµì²´ë³€ìˆ˜
 	*n = *m;
 	*m = tmp;
 
